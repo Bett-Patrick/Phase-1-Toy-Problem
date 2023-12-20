@@ -149,5 +149,14 @@ console.log(nhifDeductions(grossIncome))
 
 
 //NSSF Calculator function:
-
+let pensionablePay = prompt("Enter pensionable pay: ")
+function nssfDeductions(pensionablePay){
+        if (pensionablePay>0 && pensionablePay<=6000) {
+                return pensionablePay*0.06
+        }
+        else if (pensionablePay>6000 && pensionablePay<=18000) {
+                return pensionablePay*0.06
+        }
+}
+console.log(nssfDeductions(pensionablePay))
 
