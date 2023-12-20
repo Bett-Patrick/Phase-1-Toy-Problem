@@ -33,7 +33,6 @@ const payeRates = {
 console.log(Object.keys(payeRates))
 console.log(Object.values(payeRates))
 
-
 let outerKeys = Object.keys(payeRates)
 console.log(outerKeys)//returns array of the keys
 
@@ -59,22 +58,24 @@ console.log(taxRate)
 
 
 //payee calculator function:
-
-function payeeCalculator(taxableIncome){
+function payeeCalculator(grossIncome){
     //gross Income(input)
     //range(higher range - lower range)
     //TAX rate(%)
     //Tax(range * Tax rate)
     let paye = 0
     for (let i = 0; i < 5; i++) {
+        //PAYE if grossIncome is less than 24001:
         if (grossIncome<=higherLimit[0])  {
                 paye = paye + parseFloat(grossIncome*taxRate[i])
                 break
         }
+        //PAYE if grossIncome lies in the middle ranges:
         else if (grossIncome<=higherLimit[i]) {
                 paye = paye + parseFloat((grossIncome-lowerLimit[i])*taxRate[i])
                 break 
         }
+        //PAYE if grossIncome is greater than the highest limit:
         else if (grossIncome>lowerLimit[i] && grossIncome>higherLimit[i]) {
                 paye = paye + parseFloat((higherLimit[i] - lowerLimit[i])*taxRate[i])
         }
@@ -84,5 +85,69 @@ function payeeCalculator(taxableIncome){
     }
     return paye
 }
-console.log(payeeCalculator())
+console.log(payeeCalculator(grossIncome))
+
+
+//NHIF Deductions Calculator function:
+function nhifDeductions (grossIncome){
+        let deductions = 0
+        if (grossIncome>0 && grossIncome<6000) {
+                deductions = 150
+        }
+        else if (grossIncome>=6000 && grossIncome<8000) {
+                deductions = 300
+        }
+        else if (grossIncome>=8000 && grossIncome<12000) {
+                deductions = 400
+        }
+        else if (grossIncome>=12000 && grossIncome<15000) {
+                deductions = 500
+        }
+        else if (grossIncome>=15000 && grossIncome<20000) {
+                deductions = 600
+        }
+        else if (grossIncome>=20000 && grossIncome<25000) {
+                deductions = 750
+        }
+        else if (grossIncome>=25000 && grossIncome<30000) {
+                deductions = 850
+        }
+        else if (grossIncome>=30000 && grossIncome<35000) {
+                deductions = 900
+        }
+        else if (grossIncome>=35000 && grossIncome<40000) {
+                deductions = 950
+        }
+        else if (grossIncome>=40000 && grossIncome<45000) {
+                deductions = 1000
+        }
+        else if (grossIncome>=45000 && grossIncome<50000) {
+                deductions = 1100
+        }
+        else if (grossIncome>=50000 && grossIncome<60000) {
+                deductions = 1200
+        }
+        else if (grossIncome>=60000 && grossIncome<70000) {
+                deductions = 1300
+        }
+        else if (grossIncome>=70000 && grossIncome<80000) {
+                deductions = 1400
+        }
+        else if (grossIncome>=80000 && grossIncome<90000) {
+                deductions = 1500
+        }
+        else if (grossIncome>=90000 && grossIncome<100000) {
+                deductions = 1600
+        }
+        else if (grossIncome>=100000) {
+                deductions = 1700
+        }
+        return deductions
+}
+console.log(nhifDeductions(grossIncome))
+
+
+
+//NSSF Calculator function:
+
 
