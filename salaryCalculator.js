@@ -160,3 +160,21 @@ function nssfDeductions(pensionablePay){
 }
 console.log(nssfDeductions(pensionablePay))
 
+//Calculate all Deductions:
+let payee = payeeCalculator(grossIncome)
+let nhif = nhifDeductions(grossIncome)
+let nssf = nssfDeductions(pensionablePay)
+let allDeductions = payee+nhif+nssf
+console.log(allDeductions)
+
+//Calculate net pay:
+let netPay = grossIncome - allDeductions
+console.log(netPay)
+
+//Show the user his/her taxes and net pay:
+alert(`PAYE                  : ksh ${payee}
+NHIF                  : ksh ${nhif}
+NSSF                 : ksh ${nssf}
+All Deductions : ksh ${allDeductions}
+Net Pay"           : ksh ${netPay}`
+)
